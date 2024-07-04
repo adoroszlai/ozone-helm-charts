@@ -31,4 +31,4 @@ jobs:
       - name: check status
         run: helm get all ozone -n default
       - name: smoketest ozone
-        run: minikube kubectl -- exec -it scm-0 ozone freon ockg -n1 -t1
+        run: minikube kubectl -- exec -it ozone-scm-0 -- ozone freon ockg -n 1 -t 1
