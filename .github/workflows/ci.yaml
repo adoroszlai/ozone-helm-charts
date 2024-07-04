@@ -24,6 +24,8 @@ jobs:
     steps:
       - name: checkout source
         uses: actions/checkout@v4
+      - name: start minikube
+        run: minikube start
       - name: deploy
         run: helm install ozone charts/ozone
       - name: check status
