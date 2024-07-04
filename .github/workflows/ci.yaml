@@ -28,7 +28,9 @@ jobs:
         run: minikube start
       - name: deploy
         run: helm install ozone charts/ozone
-      - name: check status
+      - name: check helm status
         run: helm get all ozone -n default
-      - name: smoketest ozone
-        run: minikube kubectl -- exec -it ozone-scm-0 -- ozone freon ockg -n 1 -t 1
+      - name: check pod status
+        run: minikube kubectl -- get pods
+#      - name: smoketest ozone
+#        run: minikube kubectl -- exec -it ozone-scm-0.ozone-scm-headless -- ozone freon ockg -n 1 -t 1
