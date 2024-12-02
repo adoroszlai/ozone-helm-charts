@@ -1,6 +1,9 @@
 name: Test Charts
 
-on: pull_request
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
 
 jobs:
   test:
@@ -27,7 +30,10 @@ jobs:
       - name: Run chart-testing (list-changed)
         id: list-changed
         run: |
-          changed=$(ct list-changed --target-branch ${{ github.base_ref }})
+          changed="true"
+          if [[ "${{ github.event }}" == "pull_request" ]]; then
+            changed=$(ct list-changed --target-branch ${{ github.base_ref }})
+          fi
           if [[ -n "$changed" ]]; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
