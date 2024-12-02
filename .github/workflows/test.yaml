@@ -27,16 +27,16 @@ jobs:
       - name: Set up chart-testing
         uses: ./.github/actions/chart-testing-action
 
-      - name: Find changes
-        if: github.event == "pull_request"
+      - name: Find changes (PR)
+        if: github.event == 'pull_request'
         run: |
           changed=$(ct list-changed --target-branch ${{ github.base_ref }})
           if [[ -n "$changed" ]]; then
             echo "test_scope=--target-branch ${{ github.base_ref }}" >> "$GITHUB_ENV"
           fi
 
-      - name: Find changes
-        if: github.event != "pull_request"
+      - name: Find changes (push)
+        if: github.event != 'pull_request'
         run: |
           echo "test_scope=--all" >> "$GITHUB_ENV"
 
