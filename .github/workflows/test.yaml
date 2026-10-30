@@ -18,7 +18,27 @@ name: Test Charts
 on:
   pull_request:
     types: [opened, synchronize]
+    branches-ignore:
+      - 'dependabot/**'
+    paths-ignore:
+      # ignore files/dirs irrelevant for CI
+      - '.asf.yaml'
+      - '.gitignore'
+      - '**/*.md'
+      - '**/*.txt'
+      # ignore .github except this workflow and the ones used transitively
+      - '.github/**'
+      - '!.github/workflows/test.yaml'
   push:
+    paths-ignore:
+      # ignore files/dirs irrelevant for CI
+      - '.asf.yaml'
+      - '.gitignore'
+      - '**/*.md'
+      - '**/*.txt'
+      # ignore .github except this workflow and the ones used transitively
+      - '.github/**'
+      - '!.github/workflows/test.yaml'
 
 permissions: { }
 
