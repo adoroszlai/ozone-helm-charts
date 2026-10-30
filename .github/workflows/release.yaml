@@ -23,8 +23,8 @@ on:
       # ignore files/dirs irrelevant for CI
       - '.asf.yaml'
       - '.gitignore'
-      - '**/*.md'
-      - '**/*.txt'
+      - '**.md'
+      - '**.txt'
       # ignore .github except this workflow and the ones used transitively
       - '.github/**'
       - '!.github/workflows/release.yaml'
